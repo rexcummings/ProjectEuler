@@ -24,8 +24,6 @@ public class problem5
 	 */
 	public int run()
 	{
-		int a = 0;
-		int b = 1;
 		int result = 1;
 
 		for (int i = 1; i < 21; i++)
