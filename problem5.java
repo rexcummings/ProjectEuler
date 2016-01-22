@@ -27,9 +27,7 @@ public class problem5
 		int result = 1;
 
 		for (int i = 1; i < 21; i++)
-		{
 			result = lcm(result, i);
-		}
 
 		return result;
 
