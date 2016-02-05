@@ -1,3 +1,5 @@
+import java.math.BigInteger;
+
 /*
  * Project Euler: Problem 15
  * 
@@ -14,8 +16,6 @@
  */
 public class problem15
 {
-	private static final int	WIDTH	= 20;
-	private static final int	LENGTH	= 20;
 
 	public static void main(String[] args)
 	{
@@ -29,21 +29,37 @@ public class problem15
 	 * number to find the total number of paths in the whole 20 x 20 grid. This
 	 * is mentally easier to code and less resource intensive.
 	 * 
-	 * I can create a function called findPaths() which iterates from a specific
-	 * cell in such a manner that it can be reused/applied to various cells in a
-	 * similar position.
+	 * New Idea - Since we are dealing with a square grid there must be a simple
+	 * formula to calculate the number of paths. I'm a visual learner so after
+	 * finding the number of paths for 2x2, 3x3 and 4x4 being 6, 20, 70 respectfully
+	 * grid I saw an easy formula that I remembered from discrete structures 
+	 * dealing with permutations and combinations.
 	 * 
-	 * Since I haven't used recursion in awhile I might try to devise the
-	 * findPaths() function to assume its starting position is on the diagonal
-	 * and make cases for each possible path it could take.
-	 * 
-	 * I may need to create a helper function to check that the paths taken
-	 * don't go outside the range of the square grid.
+	 * Formula: 2n Choose n
 	 */
-	public int run()
-	{
-		int result = 0;
+	private static final int SIDELENGTH = 20;
 
+	public BigInteger run()
+	{
+		BigInteger result = BigInteger.ONE;
+
+		result = numOfPaths(2 * SIDELENGTH, SIDELENGTH);
+
+		return result;
+	}
+
+	/*
+	 * numOfPaths - Calculate the number of paths for an N x N square grid,
+	 * where we start in one corner and end in opposite corner.
+	 * 
+	 * Note: Formula is based on combination of 2N choose N.
+	 */
+	private static BigInteger numOfPaths(int N, int I)
+	{
+		BigInteger result = BigInteger.ONE;
+
+		for (int i = 0; i < I; i++)
+			result = result.multiply(BigInteger.valueOf(N - i)).divide(BigInteger.valueOf(i + 1));
 		return result;
 	}
 }
