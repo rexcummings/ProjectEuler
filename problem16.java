@@ -30,7 +30,7 @@ public class problem16
 		value = base.pow(exponent);
 		String str = value.toString();
 
-		for (int i = 0; i < str.length() - 1; i++)
+		for (int i = 0; i < str.length(); i++)
 			sum += (int) (str.charAt(i) - '0');
 
 		return sum;
